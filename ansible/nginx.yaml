@@ -3,7 +3,22 @@
   hosts: web
   become: true
   tasks:
+    - name: mise a jour apt
+      apt:
+        update_cache: yes
+
     - name: installer nginx
       apt:
         name: nginx
         state: present
+
+    - name: Démarrer et activer nginx
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: Home Page
+      copy:
+        dest: /var/www/html/index.html
+        src: html/index.html
