@@ -1,0 +1,9 @@
+---
+- name: Installation de Engine-X
+  hosts: web
+  become: true
+  tasks:
+    - name: installer nginx
+      apt:
+        name: nginx
+        state: present

@@ -54,10 +54,12 @@ resource "aws_vpc_security_group_egress_rule" "younes_sg_allow_all" {
 }
 
 resource "aws_instance" "younes_serverweb" {
-  ami             = data.aws_ami.ubuntu.id
-  instance_type   = var.my_instance_type
-  subnet_id       = "subnet-0a38a0323b4ac7794"
-  security_groups = [aws_security_group.younes_sg.id]
+  ami                         = data.aws_ami.ubuntu.id
+  instance_type               = var.my_instance_type
+  subnet_id                   = "subnet-0a38a0323b4ac7794"
+  key_name                    = aws_key_pair.younes_keypair.key_name
+  associate_public_ip_address = true
+  security_groups             = [aws_security_group.younes_sg.id]
 
   tags = {
     Name = "Younes-MV"
